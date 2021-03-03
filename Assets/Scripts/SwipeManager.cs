@@ -26,7 +26,7 @@ public class SwipeManager : MonoBehaviour
         }
     }
     #endregion
-
+    public PlatformManager platformManager;
     public Transform player;
     private Vector2 fingerDown;
     private Vector2 fingerUp;
