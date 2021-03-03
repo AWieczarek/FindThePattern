@@ -43,7 +43,7 @@ public class SwipeManager : MonoBehaviour
     public bool SwipeUp { get { return swipeUp; } }
     public bool SwipeDown { get { return swipeDown; } }
 
-    void Update()
+	void Update()
     {
         tap = doubleTap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
 
