@@ -28,6 +28,7 @@ public class SwipeManager : MonoBehaviour
     #endregion
     public PlatformManager platformManager;
     public Transform player;
+    public Animator animator;
     private Vector2 fingerDown;
     private Vector2 fingerUp;
     public bool detectSwipeOnlyAfterRelease = false;
@@ -48,23 +49,22 @@ public class SwipeManager : MonoBehaviour
         tap = doubleTap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
 
         UpdateMobile();
-
-        if(swipeUp)
+        if (swipeUp)
 		{
-            player.transform.position += new Vector3(0,0,1.5f);
-		}else if (swipeLeft)
+            transform.position += new Vector3(0,0,1.5f);
+        }
+        else if (swipeLeft)
         {
-            player.transform.position += new Vector3(-1.5f, 0, 0);
+            transform.position += new Vector3(-1.5f, 0, 0);
         }else if (swipeRight)
         {
-            player.transform.position += new Vector3(1.5f, 0, 0);
+            transform.position += new Vector3(1.5f, 0, 0);
         }
+        
     }
 
     private void UpdateMobile()
     {
-
-
         foreach (Touch touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
@@ -120,6 +120,4 @@ public class SwipeManager : MonoBehaviour
     {
         return Mathf.Abs(fingerDown.x - fingerUp.x);
     }
-
-
 }

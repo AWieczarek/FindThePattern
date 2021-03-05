@@ -51,7 +51,9 @@ public class PlatformManager : MonoBehaviour
                 pom += 20;
             }
         }
-	}
+
+        
+    }
 
 	public int EmptyPosition()
 	{
@@ -63,9 +65,8 @@ public class PlatformManager : MonoBehaviour
         for (int j = -wCount; j < wCount; j++)
         {
             int x = EmptyPosition();
-            Debug.Log(x);
             platforms[x, j + wCount].GetComponent<Renderer>().material.color = Color.green;
-            platforms[x, j + wCount].GetComponent<BoxCollider>().isTrigger = true;
+            platforms[x, j + wCount].GetComponent<BoxCollider>().isTrigger = false;
         }
     }
 }
