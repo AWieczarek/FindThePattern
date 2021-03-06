@@ -37,8 +37,6 @@ public class SwipeManager : MonoBehaviour
 
     private bool tap, doubleTap, swipeLeft, swipeRight, swipeUp, swipeDown;
 
-    public Score score;
-
     public bool Tap { get { return tap; } }
     public bool DubleTap { get { return doubleTap; } }
     public bool SwipeLeft { get { return swipeLeft; } }
@@ -54,7 +52,6 @@ public class SwipeManager : MonoBehaviour
         if (swipeUp)
 		{
             transform.position += new Vector3(0,0,1.5f);
-            score._score++;
         }
         else if (swipeLeft)
         {
