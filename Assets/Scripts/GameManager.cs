@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class GameManager : MonoBehaviour
 		animator.SetBool("GameOver", true);
 	}
 
-	void GameOverOpenUI()
+
+	public IEnumerator GameOverOpenUI()
 	{
+		yield return new WaitForSeconds(1f);
 		Time.timeScale = 0;
 		GameOverUI.SetActive(true);
 	}
@@ -35,5 +38,11 @@ public class GameManager : MonoBehaviour
 			Time.timeScale = 0;
 			isPaused = true;
 		}
+	}
+
+	public void Reset()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		Time.timeScale = 1;
 	}
 }

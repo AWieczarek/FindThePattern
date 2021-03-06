@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+	public GameManager gm;
     public void ExplosionTrigger()
 	{
 		Collider[] colliders = Physics.OverlapSphere(transform.position, 8);
@@ -16,6 +17,6 @@ public class Explosion : MonoBehaviour
 				rig.AddExplosionForce(100, gameObject.transform.position, 8);
 			}
 		}
-		Invoke("FindObjectOfType<GameManager>().GameOverOpenUI", 3);
+		StartCoroutine(gm.GameOverOpenUI());
 	}
 }
