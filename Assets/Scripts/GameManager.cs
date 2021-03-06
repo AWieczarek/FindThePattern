@@ -10,13 +10,16 @@ public class GameManager : MonoBehaviour
 	public GameObject GameOverUI;
 	public GameObject PauseUI;
 	public GameObject GameMenuUI;
+	public GameObject OptionsUI;
 	public Animator animator;
 	public SwipeManager swipeManager;
 	public Score score;
 	public TextMeshProUGUI highestScore;
+	bool gameOver = false;
 	public void GameOver()
 	{
 		swipeManager.enabled = false;
+		gameOver = true;
 		GameMenuUI.SetActive(false);
 		animator.SetBool("GameOver", true);
 		if(score._score>PlayerPrefs.GetInt("Score"))
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
 		}else
 		{
 			PauseUI.SetActive(true);
+			GameMenuUI.SetActive(false);
 			swipeManager.enabled = false;
 			Time.timeScale = 0;
 			isPaused = true;
@@ -60,7 +64,6 @@ public class GameManager : MonoBehaviour
 
 	public void Play()
 	{
-		Debug.Log("Dupa");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 
@@ -68,5 +71,31 @@ public class GameManager : MonoBehaviour
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		Time.timeScale = 1;
+	}
+
+	public void PauseToOptions()
+	{
+		PauseUI.SetActive(false);
+		OptionsUI.SetActive(true);
+	}
+
+	public void GOToOptions()
+	{
+		GameOverUI.SetActive(false);
+		OptionsUI.SetActive(true);
+	}
+
+	public void Back()
+	{
+		if (gameOver)
+		{
+			GameOverUI.SetActive(true);
+			OptionsUI.SetActive(false);
+		}
+		else
+		{
+			PauseUI.SetActive(true);
+			OptionsUI.SetActive(false);
+		}
 	}
 }
