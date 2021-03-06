@@ -5,13 +5,25 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     private PlatformManager platformManager;
+    public GameObject destroyedPlatform;
 
     private void OnEnable()
     {
         platformManager = GameObject.FindObjectOfType<PlatformManager>();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        FindObjectOfType<GameManager>().GameOver();
+    }
 
-    void Update()
+	private void OnTriggerExit(Collider other)
+	{
+        Instantiate(destroyedPlatform, transform.position, transform.rotation);
+        GameObject.FindGameObjectWithTag("Ball").GetComponent<Explosion>().ExplosionTrigger();
+        Destroy(gameObject);
+	}
+
+	void Update()
     {
         if (this.gameObject.transform.position.z <= platformManager.player.position.z - 6f)
         {
@@ -25,4 +37,6 @@ public class Platform : MonoBehaviour
             this.gameObject.transform.position -= new Vector3((platformManager.wCount * platformManager.offsetChange)*2, 0, 0);
         }
     }
+
+    
 }

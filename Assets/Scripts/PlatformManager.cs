@@ -66,7 +66,7 @@ public class PlatformManager : MonoBehaviour
         {
             int x = EmptyPosition();
             platforms[x, j + wCount].GetComponent<Renderer>().material.color = Color.green;
-            platforms[x, j + wCount].GetComponent<BoxCollider>().isTrigger = false;
+            platforms[x, j + wCount].GetComponent<BoxCollider>().isTrigger = true;
         }
     }
 }
